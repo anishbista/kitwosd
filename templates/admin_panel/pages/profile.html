@@ -1,0 +1,136 @@
+{% extends 'admin_panel/base.html' %} {% block content %}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+  
+  <div class="row">
+    <div class="col-md-12">
+      
+      <div class="card mb-4">
+        <h5 class="card-header">Profile Details</h5>
+
+        <hr class="my-0" />
+        <div class="card-body">
+          <form id="profileS" method="POST" onsubmit="return false">
+            {% csrf_token %}
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <label for="firstName" class="form-label">First Name</label>
+                <input class="form-control" type="text" id="firstName" name="first_name"
+                  value="{{request.user.first_name}}" />
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input class="form-control" type="text" name="last_name" id="lastName"
+                  value="{{request.user.last_name}}" />
+              </div>
+            </div>
+            <div class="mt-2">
+              <button type="button" class="btn btn-primary me-2" id="pUpdt">
+                Save changes
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- /Account -->
+      </div>
+      <div class="card">
+        <h5 class="card-header">Password Change</h5>
+        <div class="card-body">
+          <div class="mb-3 col-12 mb-0">
+            <div class="alert alert-warning">
+              <h6 class="alert-heading fw-bold mb-1">
+                Are you sure you want to change your password?
+              </h6>
+              <p class="mb-0">
+                Once you change your password, there is no going back. Please be
+                certain.
+              </p>
+            </div>
+          </div>
+          <form id="pwdChange" onsubmit="return false">
+            {% csrf_token %}
+            <div class="mb-3 form-password-toggle">
+              <div class="input-group input-group-merge">
+                <input type="password" id="password" class="form-control" name="current" placeholder="Current Password"
+                  aria-describedby="password" />
+                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+              </div>
+            </div>
+            <div class="mb-3 form-password-toggle">
+              <div class="input-group input-group-merge">
+                <input type="password" id="password" class="form-control" name="new" placeholder="New Password"
+                  aria-describedby="password" />
+                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+              </div>
+            </div>
+            <div class="mb-3 form-password-toggle">
+              <div class="input-group input-group-merge">
+                <input type="password" id="password" class="form-control" name="confirm" placeholder="Confirm Password"
+                  aria-describedby="password" />
+                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-danger" id="cp">
+              Change Password
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    // password change
+    $("#cp").on("click", async () => {
+      let form = document.getElementById("pwdChange");
+      let fd = new FormData(form);
+      let ent = Object.fromEntries(fd.entries());
+      let formInvalid = [];
+      for (const key in ent) {
+        if (key!=="current"){
+
+          if (!ent[key]) {
+            formInvalid.push(true);
+          } else {
+            if (ent[key].length < 6) {
+              await Swal.fire({ title: `Length of ${key} password is less than 6`, icon: 'error', timer: 1000, showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false })
+              formInvalid.push(true);
+            } else {
+              formInvalid.push(false);
+            }
+          } 
+        }
+      }
+      if (formInvalid.every(f => !f)) {
+        let resp = await fetch("/admin/password-change/", { body: fd, method: "POST" });
+        resp = await resp.json();
+        await Swal.fire({ title: resp?.title, text: resp?.message, icon: resp?.code == 200 ? 'success' : 'error', timer: 1000, showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false });
+        if (resp?.code == 200) {
+          window.location.reload();
+        }
+
+      }
+    });
+    // update profile
+
+    $("#pUpdt").on("click", async () => {
+      let form = document.getElementById("profileS");
+      let fd = new FormData(form);
+
+      if (form.checkValidity()) {
+        let resp = await fetch("/admin/profile-update/", { body: fd, method: "POST" });
+        resp = await resp.json();
+        await Swal.fire({ title: resp?.title, text: resp?.message, icon: resp?.code == 200 ? 'success' : 'error', timer: 1000, showConfirmButton: false, allowOutsideClick: false, allowEscapeKey: false });
+      } else {
+        form.reportValidity();
+        // document.querySelector("input['name=phone_number']").report
+      }
+    });
+
+
+  })
+</script>
+{% endblock %}

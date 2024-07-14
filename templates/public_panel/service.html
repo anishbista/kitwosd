@@ -1,0 +1,190 @@
+{% extends "public_panel/base.html" %}
+
+
+{% block content %}
+
+        <div class="clearfix"></div>
+
+
+        <div class="help gav-help-region">
+            <div class="container">
+                <div class="content-inner">
+                    <div class="region region__help">
+                        <div data-drupal-messages-fallback class="hidden"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="clearfix"></div>
+
+        <div id="content" class="content content-full">
+            <div class="container-full container-bg">
+                <div class="content-main-inner">
+                    <div id="page-main-content" class="main-content">
+                        <div class="main-content-inner">
+                            <div class="content-main">
+                                <div class="region region__content">
+                                    <div id="block-mainpagecontent"
+                                        class="block block-system block-system-main-block no-title">
+
+
+                                        <div class="content block-content">
+                                            <!-- Start Display article for detail page -->
+
+                                            <div data-history-node-id="77" role="article"
+                                                class="node node--type-page node--view-mode-full">
+                                                <div class="header-title">
+                                                    <div class="container">
+                                                        <h2 class="title"><span>
+                                                                <span></span>
+                                                            </span></h2>
+                                                    </div>
+                                                </div>
+                                                <div class="node__content clearfix">
+                                                    <div class="gavias-builder--content">
+                                                        <div class="gbb-row-wrapper">
+                                                            <div class=" gbb-row  bg-size-cover el-10043920 "
+                                                                style="">
+                                                                <div class="bb-inner default">
+                                                                    <div class="bb-container container">
+                                                                        <div class="row row-wrapper">
+                                                                            <div
+                                                                                class="gsc-column el-39457335 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12   ">
+                                                                                <div class="column-inner  bg-size-cover ">
+                                                                                    <div class="column-content-inner">
+
+                                                                                        <div class="widget gsc-heading gsc-heading__align-center  style-1 "
+                                                                                            style="max-width: 600px;">
+
+                                                                                            <div
+                                                                                                class="gsc-heading__content clearfix">
+                                                                                                <div
+                                                                                                    class="gsc-heading__sub-title fweight-500 ">
+                                                                                                    <span>{{service_page.title}}</span>
+                                                                                                </div>
+                                                                                                <h2
+                                                                                                    class="gsc-heading__title fweight-600 ">
+                                                                                                    <span>{{service_page.sub_title}}</span>
+                                                                                                </h2>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="gbb-row-wrapper">
+                                                            <div class=" gbb-row  bg-size-cover el-27918795 "
+                                                                style="">
+                                                                <div class="bb-inner default">
+                                                                    <div class="bb-container container">
+                                                                        <div class="row row-wrapper">
+                                                                            {% for item in services %}
+                                                                            
+                                                                                                                                                         
+                                                                            <div class="gsc-column el-17790981 col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12   ">
+                                                                                    <div
+                                                                                        class="column-inner  bg-size-cover ">
+                                                                                        <div class="column-content-inner">
+
+                                                                                            <div
+                                                                                                class="el-feature-block  style-3">
+
+
+
+
+                                                                                                <div
+                                                                                                    class="feature-three__single" onclick="window.location.href='{% url 'service_detail' item.slug %}';"
+                                                                                                    style="cursor: pointer;" >
+                                                                                                    
+                                <img src="{{ item.images.first.image.url }}" alt="{{ item.images.first.alt }}" style="height: 200px; width: 100%; object-fit: cover;"/>
+                           
+        
+                                <a class="feature-three__overlay-link"
+                                                                                                        href="#"></a>
+                                                                                                    <div
+                                                                                                        class="feature-three__content">
+                                                                                                        <div
+                                                                                                            class="feature-three__content-inner">
+                                                                                                            <span
+                                                                                                                class="feature-three__content-icon"><img
+                                                                                                                    class="rounded"
+                                                                                                                    src="{{item.logo.url}}"
+                                                                                                                    style="height:56px;width:auto; "></span>
+                                                                                                            <h3
+                                                                                                                class="feature-three__content-title">
+                                                                                                                {{item.title}}
+                                                                                                            </h3>
+                                                                                                            <div
+                                                                                                                class="feature-three__content-desc">
+                                                                                                                {% if item.short_description|length > 100 %}
+                                                                                                                {{item.short_description|slice:100}}....
+                                                                                                                {% else %}
+                                                                                                                {{item.short_description}}
+                                                                                                                {% endif %}
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="feature-three__content-action">
+                                                                                                                <a class="btn-inline"
+                                                                                                                    href="#"><span>Read
+                                                                                                                        more</span></a>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+
+
+
+
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+
+
+
+                                                                                </div>
+                                                                                {% endfor %}  
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {% endblock content %}

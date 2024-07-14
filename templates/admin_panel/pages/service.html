@@ -1,0 +1,89 @@
+{% extends 'admin_panel/base.html' %} 
+
+{% block content %}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="d-flex align-items-center justify-content-between">
+                <span>{{title}}</span>
+                <a href="{% url 'admin_service_new' %}" class="btn btn-out-dashed btn-success btn-square">Add New Service</a>
+            </h5>
+        </div>
+        <div class="card-block">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Priority</th>
+                            <th>Add</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in object_list %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>
+                                {{i.title }}
+                            </td>
+                            <td>
+                                {{i.priority}}
+                            </td>
+                            <td>
+                                <a href="{% url 'admin_service_image_list' i.id %}"
+                                    class="btn btn-out-dashed btn-secondary btn-square">Image</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'admin_service_edit' i.id %}"
+                                class="btn btn-out-dashed btn-primary btn-square">Edit</a>
+                            <a href="{% url 'admin_service_delete' i.id  %}"
+                                class="btn btn-out-dashed btn-danger btn-square">Delete</a> 
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr class="table-light">
+                            <td colspan="4">
+                                No data added !
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% if page_obj.has_other_pages %}
+                        <tr>
+                            <td colspan="6">
+                                <ul class="pagination my-3">
+                                    {% if page_obj.has_previous %}
+                                    <li class="page-item"><a class="page-link"
+                                            href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                                    {% else %}
+                                    <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                                    {% endif %}
+                                    {% for i in page_obj.paginator.page_range %}
+                                    {% if page_obj.number == i %}
+                                    <li class="active page-item"><span class="page-link">{{ i }} <span
+                                                class="sr-only">(current)</span></span></li>
+                                    {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                    <li class="page-item"><a class="page-link"
+                                            href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                                    {% else %}
+                                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endif %}
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

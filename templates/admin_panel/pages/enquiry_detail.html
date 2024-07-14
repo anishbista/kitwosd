@@ -1,0 +1,45 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block content %}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="d-flex align-items-center justify-content-between">
+                <span>{{ title }}</span>
+            </h5>
+        </div>
+        <div class="card-block">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Name:</th>
+                        <td>{{ object.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td>{{ object.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone:</th>
+                        <td>{{ object.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Subject:</th>
+                        <td>{{ object.subject }}</td>
+                    </tr>
+                    <tr>
+                        <th>Message:</th>
+                        <td>{{ object.message }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date:</th>
+                        <td>{{ object.created_at }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

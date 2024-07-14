@@ -1,0 +1,240 @@
+{% extends "public_panel/base.html" %}
+
+
+{% block content %}
+
+        <div class="clearfix"></div>
+
+
+        <div class="help gav-help-region">
+            <div class="container">
+                <div class="content-inner">
+                    <div class="region region__help">
+                        <div data-drupal-messages-fallback class="hidden"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="clearfix"></div>
+
+        <div id="content" class="content content-full mt-md-5 mt-sm-2">
+            <div class="container container-bg">
+                <div class="content-main-inner">
+                    <div class="row">
+
+
+
+
+
+
+                        <div id="page-main-content"
+                            class="main-content col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 order-xl-2 order-lg-2 order-md-1 order-sm-1 order-xs-1 sb-r ">
+                            <div class="main-content-inner">
+                                <div class="content-main">
+                                    <div class="region region__content">
+                                        <div id="block-mainpagecontent"
+                                            class="block block-system block-system-main-block no-title">
+
+
+                                            <div class="content block-content">
+
+                                                <!-- Start Display article for teaser page -->
+                                                <!-- Start Display article for detail page -->
+
+                                                <article data-history-node-id="18" role="article"
+                                                    class="node node-detail node--type-article node--promoted node--view-mode-full clearfix">
+                                                    <div class="post-block">
+
+                                                        <div class="post-thumbnail post-gallery">
+
+                                                            <div>
+                                                                <div class="owl-carousel init-carousel-owl" data-items="1"
+                                                                    data-items_lg="1" data-items_md="1" data-items_sm="1"
+                                                                    data-items_xs="1" data-loop="1" data-speed="500"
+                                                                    data-auto_play="0" data-auto_play_speed="2000"
+                                                                    data-auto_play_timeout="5000" data-auto_play_hover="1"
+                                                                    data-navigation="1" data-rewind_nav="0"
+                                                                    data-pagination="0" data-mouse_drag="1"
+                                                                    data-touch_drag="1">
+                                                                    {% for item in service.images.all %}
+                                                                                                                                            <div class="item">
+
+                                                                            <div class="item-image">
+
+                                                                                <img loading="lazy"
+                                                                                    src="{{item.image.url}}"
+                                                                                    alt="{{item.image.alt}}" id="serviceimage" />
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                        {% endfor %}
+                                                                                                                                          
+                                                                                                                            
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+
+                                                        <div class="post-content">
+
+                                                            <h1 class="post-title">
+                                                                <span>{{service.title}}</span>
+                                                            </h1>
+
+                                                            <div class="post-meta">
+                                                                <span class="post-created"> {{service.modified_at|date:"d-F-Y"}}</span>
+                                                            </div>
+
+                                                            <div class="node__meta hidden">
+                                                                <article>
+                                                                </article>
+
+                                                                <span>
+                                                                    Submitted by
+                                                                    <span><span>admin</span></span>
+                                                                    on 15-March-2024</span>
+
+                                                            </div>
+
+                                                            <div class="node__content clearfix">
+
+                                                                <div>
+                                                                   {{service.description|safe}}
+                                                                </div>
+
+                                                            </div>
+
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </article>
+
+                                                <!-- End Display article for detail page -->
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Left -->
+                        <!-- End Sidebar Left -->
+
+                        <!-- Sidebar Right -->
+
+
+                        <div
+                            class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 order-xl-3 order-lg-3 order-md-3 order-sm-3 order-xs-3 sidebar sidebar-right theiaStickySidebar">
+                            <div class="sidebar-inner">
+                                <div class="region region__sidebar-right">
+                                    <div class="views-element-container block block-views block-views-blockcategories-post-block-1"
+                                        id="block-views-block-categories-post-block-1">
+
+                                        <h2 class="block-title"><span>Top Services</span></h2>
+
+                                        <div class="content block-content">
+                                            <div>
+                                                <div
+                                                    class="category-list gva-view js-view-dom-id-007d15f29242c192d3c3ff70fe43c3a3d93927f6bbaf2211d4443376bde296fb">
+                                                    <div class="item-list">
+                                                        <ul> {% for item in services  %}
+                                                        
+                                                      
+                                                                                                                            <li class="view-list-item">
+                                                                    <div class="views-field views-field-name"><span
+                                                                            class="field-content"><a
+                                                                                href="{% url 'service_detail' item.slug %}"
+                                                                                hreflang="en">{{item.title}}</a></span>
+                                                                    </div>
+                                                                </li>
+                                                                                                                            
+                                                                {% endfor %}
+                                                        </ul>
+
+                                                    </div>
+
+
+
+
+
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="views-element-container block block-views block-views-blockcategories-post-block-2"
+                                        id="block-views-block-categories-post-block-2">
+
+                                        <h2 class="block-title"><span>Tags </span></h2>
+
+                                        <div class="content block-content">
+                                            <div>
+                                                <div
+                                                    class="tags-list gva-view js-view-dom-id-12652dcdeda2b2f8ff7af38a3df871dad0a5b9a2cb75f3bbaee552996f97bc45">
+                                                    <div class="item-list">
+
+                                                        <ul>
+                                                            {% for item in service.tag %}
+                                                            
+                                                          
+
+                                                                                                                            <li class="view-list-item">
+                                                                    <div class="views-field views-field-name"><span
+                                                                            class="field-content"><a
+                                                                                href="taxonomy/term/1.html"
+                                                                                hreflang="en">{{item}}</a></span>
+                                                                    </div>
+                                                                </li>
+                                                                {% endfor %}
+                                                                                                                           
+                                                        </ul>
+
+                                                    </div>
+
+
+
+
+
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End Sidebar Right -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}

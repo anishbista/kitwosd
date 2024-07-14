@@ -1,0 +1,14 @@
+asgiref==3.7.2
+crispy-bootstrap5==2024.2
+defusedxml==0.7.1
+Django==4.2.3
+django-cleanup==8.1.0
+django-crispy-forms==2.1
+django-svg-image-form-field==1.0.1
+django-tinymce==3.7.1
+mysqlclient==2.2.4
+Pillow==10.0.0
+python-decouple==3.8
+sqlparse==0.4.4
+tzdata==2023.3
+python-dotenv==1.0.0

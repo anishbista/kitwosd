@@ -1,0 +1,209 @@
+{% extends "public_panel/base.html" %}
+
+
+{% block content %}
+
+        <div class="help gav-help-region">
+            <div class="container">
+                <div class="content-inner">
+                    <div class="region region__help">
+                        <div data-drupal-messages-fallback class="hidden"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="clearfix"></div>
+
+        <div id="content" class="content content-full">
+            <div class="container-full container-bg">
+                <div class="content-main-inner">
+                    <div id="page-main-content" class="main-content">
+                        <div class="main-content-inner">
+                            <div class="content-main">
+                                <div class="region region__content">
+                                    <div id="block-mainpagecontent"
+                                        class="block block-system block-system-main-block no-title">
+
+
+                                        <div class="content block-content">
+                                            <!-- Start Display article for detail page -->
+
+                                            <div data-history-node-id="103" role="article"
+                                                class="node node--type-page node--view-mode-full">
+                                                <div class="header-title">
+                                                    <div class="container">
+                                                        <h2 class="title"><span>
+                                                                <span>Blog Grid</span>
+                                                            </span></h2>
+                                                    </div>
+                                                </div>
+                                                <div class="node__content clearfix">
+                                                    <div class="gavias-builder--content">
+                                                        <div class="gbb-row-wrapper">
+                                                            <div class=" gbb-row  bg-size-cover el-78265709 "
+                                                                style="">
+                                                                <div class="bb-inner default">
+                                                                    <div class="bb-container container">
+                                                                        <div class="row row-wrapper">
+                                                                            <div
+                                                                                class="gsc-column el-70133782 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12   ">
+                                                                                <div class="column-inner  bg-size-cover ">
+                                                                                    <div class="column-content-inner">
+
+                                                                                        <div class="widget gsc-heading gsc-heading__align-center  style-1 "
+                                                                                            style="max-width: 800px;">
+
+                                                                                            <div
+                                                                                                class="gsc-heading__content clearfix">
+                                                                                                <div
+                                                                                                    class="gsc-heading__sub-title fweight-500 ">
+                                                                                                    <span>{{blog_page.title}}</span>
+                                                                                                </div>
+                                                                                                <h2
+                                                                                                    class="gsc-heading__title fweight-600 text-black">
+                                                                                                    <span>{{blog_page.sub_title}}</span>
+                                                                                                </h2>
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                        <div>
+                                                                                            <div
+                                                                                                class="widget block clearfix gsc-block-view  gsc-block-drupal block-view title-align-center  text-dark remove-margin-off">
+                                                                                                <div
+                                                                                                    class="views-element-container">
+                                                                                                    <div
+                                                                                                        class="post-style-grid gva-view js-view-dom-id-6a7c12e0ff8d54fd7827faf67e5090b7bc25e52ac399f8c01ab8542e2f075a6f">
+
+
+
+
+
+
+
+
+                                                                                                        <div
+                                                                                                            class="gva-view-grid">
+
+                                                                                                            {% for item in blogs %}
+                                                                                                            
+                                                                                                            <div
+                                                                                                                class="gva-view-grid-inner lg-block-grid-3 md-block-grid-3 sm-block-grid-2 xs-block-grid-2">
+                                                                                                                                                                                                                                    <div
+                                                                                                                        class="item-columns ">
+                                                                                                                        <div class="as_blog_box" >
+                                                                                                                            <!-- Start Display article for teaser page -->
+
+                                                                                                                            <div
+                                                                                                                                class="post-block">
+                                                                                                                                <div
+                                                                                                                                    class="post-image">
+
+                                                                                                                                    <div
+                                                                                                                                        class="field field--name-field-image field--type-image field--label-hidden field__item">
+                                                                                                                                        <div
+                                                                                                                                            class="item-image">
+                                                                                                                                            <a
+                                                                                                                                                href="{% url 'blog_detail' item.slug %}"><img
+                                                                                                                                                    loading="lazy"
+                                                                                                                                                    src="{{ item.images.first.image.url }}"
+                                                                                                                                                    alt="{{ item.images.first.alt }}"
+                                                                                                                                                    style="height:200px; width:100%; object-fit:cover;" />
+
+                                                                                                                                            </a>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+
+                                                                                                                                </div>
+                                                                                                                                <div
+                                                                                                                                    class="post-content text-left">
+                                                                                                                                    <div
+                                                                                                                                        class="post-meta">
+                                                                                                                                        <span class="post-created"> {{item.modified_at|date:"d-F-Y"}}</span>
+
+                                                                                                                                    </div>
+                                                                                                                                    <h3
+                                                                                                                                        class="">
+                                                                                                                                        <a href="blogdetails/15.html"
+                                                                                                                                            rel="bookmark">
+                                                                                                                                            {% if item.title|length > 50 %}
+                                                                                                                                            <span>{{item.title|slice:50}}....</span>
+                                                                                                                                            {% else %}
+                                                                                                                                            <span>{{item.title}}</span>
+                                                                                                                                            {% endif %}
+                                                                                                                                        </a>
+                                                                                                                                    </h3>
+                                                                                                                                    <a class="read-more btn-inline"
+                                                                                                                                        href="{% url 'blog_detail' item.slug %}">Learn
+                                                                                                                                        more</a>
+                                                                                                                                </div>
+                                                                                                                            </div>
+
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                
+                                                                                                            </div>
+                                                                                                            {% endfor %}
+
+
+                                                                                                        </div>
+
+                                                                                                        
+
+
+
+
+
+
+                                                                                                    </div>
+                                                                                                    <div class=" mt-8 d-flex justify-center text-align-center">
+
+                                                                                                        <!-- Load more button -->
+                                                                                                        <button type="button" class="btn btn-light as_btn text-black" style="color: #2F716F;"
+                                                                                                            id="loadMoreBtn">Load more</button>
+
+                                                                                                </div>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+               {% endblock %}
